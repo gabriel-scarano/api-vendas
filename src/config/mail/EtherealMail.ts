@@ -11,7 +11,7 @@ interface ITemplateVariable {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVariable;
 }
 
@@ -23,7 +23,12 @@ interface ISendMail {
 }
 
 export default class EtherealMail {
-  static async sendMail({ to, from, subject, templateData }: ISendMail): Promise<void> {
+  static async sendMail({
+    to,
+    from,
+    subject,
+    templateData,
+  }: ISendMail): Promise<void> {
     const account = await nodemailer.createTestAccount();
 
     const mailTemplate = new HandlebarsMailTemplate();
